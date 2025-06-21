@@ -1,6 +1,13 @@
 # PruebaTecnica
-
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
+
+## Video
+
+Video Resumen de Prueba Tecnica en drive
+
+```bash
+https://drive.google.com/drive/folders/1HfzZHwCzA9mQ-rBgdeSr4S3-XU3dYk1q?usp=sharing
+```
 
 ## Development server
 
