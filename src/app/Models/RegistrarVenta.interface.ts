@@ -18,4 +18,11 @@ export interface ProductoConStock {
   nombre_producto: string;
   precioVenta: number;
   stock: number;
+  costo: number;
+}
+export interface Producto {
+  id_producto: number;
+  nombre_producto: string;
+  precioVenta: number;
+  costo: number;
 }

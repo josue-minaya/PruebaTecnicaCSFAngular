@@ -66,7 +66,7 @@ export default class RegistrarCompraComponent {
     const grupo = this.fb.group({
       id_Producto: [prod.id_producto, Validators.required],
       cantidad: [1, [Validators.required, Validators.min(1)]],
-      costo: [Math.round(prod.precioVenta / 1.35)],
+      costo: prod.costo,
     });
 
     grupo.get('id_Producto')?.valueChanges.subscribe((id: number | null) => {
@@ -75,7 +75,7 @@ export default class RegistrarCompraComponent {
         if (producto) {
           grupo.patchValue(
             {
-              costo: producto.precioVenta / 1.35,
+              costo: producto.costo,
             },
             { emitEvent: false }
           );
