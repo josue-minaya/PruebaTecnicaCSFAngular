@@ -1,0 +1,76 @@
+<div class="container mt-4">
+  <h2>Registrar Compra</h2>
+  <form [formGroup]="formCompra">
+    <div formArrayName="detalles">
+      <div
+        class="row mb-2 border p-3 rounded"
+        *ngFor="let det of detalles.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <div class="col-md-3">
+          <label>Producto</label>
+          <select class="form-select" formControlName="id_Producto">
+            <option *ngFor="let p of productos" [value]="p.id_producto">
+              {{ p.nombre_producto }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label>Cantidad</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="cantidad"
+          />
+        </div>
+
+        <div class="col-md-2">
+          <label>Costo</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="costo"
+            [value]="det.get('costo')?.value"
+          />
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+          <button
+            class="btn btn-danger"
+            type="button"
+            (click)="eliminarDetalle(i)"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <button class="btn btn-primary" type="button" (click)="agregarDetalle()">
+        + Agregar Producto
+      </button>
+      <button
+        class="btn btn-primary mx-3"
+        type="button"
+        (click)="RegistrarProducto()"
+      >
+        Registrar Producto
+      </button>
+    </div>
+
+    <hr />
+
+    <button
+      class="btn btn-success mt-3"
+      type="button"
+      (click)="guardarCompra()"
+    >
+      Guardar Compra
+    </button>
+  </form>
+</div>
+
+@if (modalVisible()){
+<app-modal-producto (onClose)="cerrarModal()" />
+
+}

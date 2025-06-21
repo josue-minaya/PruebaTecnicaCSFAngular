@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <table class="table table-hover text-center">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nombre Producto</th>
+            <th>Stock</th>
+            <th>Costo</th>
+            <th>Precio</th>
+            <th>Detalle</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of listaProductos(); track $index) {
+          <tr>
+            <td>{{ item.id_producto }}</td>
+            <td>{{ item.nombre_producto }}</td>
+            <td>{{ item.stock }}</td>
+            <td>{{ item.costo | currency : "S/." }}</td>
+            <td>{{ item.precioVenta | currency : "S/." }}</td>
+            <th>
+              <button
+                class="btn btn-primary"
+                (click)="verDetalle(item.id_producto)"
+              >
+                Ver Detalle
+              </button>
+            </th>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+@if (modalVisible()){
+<app-modal-movimiento [movimientos]="modalData()" (onClose)="cerrarModal()" />
+
+}

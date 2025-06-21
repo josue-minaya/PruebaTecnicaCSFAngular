@@ -1,0 +1,82 @@
+<div class="container mt-4">
+  <h2>Registrar Venta</h2>
+  <form [formGroup]="formVenta">
+    <div formArrayName="detalles">
+      <div
+        class="row mb-2 border p-3 rounded"
+        *ngFor="let det of detalles.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <div class="col-md-3">
+          <label>Producto</label>
+          <select class="form-select" formControlName="id_Producto">
+            <option *ngFor="let p of productos" [value]="p.id_producto">
+              {{ p.nombre_producto }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label>Cantidad</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="cantidad"
+          />
+        </div>
+        <div class="col-md-2">
+          <label>Stock</label>
+          <input
+            disabled
+            type="text"
+            class="form-control"
+            [value]="det.get('stock')?.value"
+            readonly
+          />
+        </div>
+        <div class="col-md-2">
+          <label>Precio</label>
+          <input
+            disabled
+            type="text"
+            class="form-control"
+            [value]="det.get('precio')?.value | currency : 'S/.'"
+            readonly
+          />
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+          <button
+            class="btn btn-danger"
+            type="button"
+            (click)="eliminarDetalle(i)"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <button class="btn btn-primary" type="button" (click)="agregarDetalle()">
+        + Agregar Producto
+      </button>
+    </div>
+
+    <hr />
+
+    <div>
+      <p>
+        Subtotal: <strong>{{ subTotal() | currency : "S/." }}</strong>
+      </p>
+      <p>
+        IGV (18%): <strong>{{ igv() | currency : "S/." }}</strong>
+      </p>
+      <p>
+        Total: <strong>{{ total() | currency : "S/." }}</strong>
+      </p>
+    </div>
+
+    <button class="btn btn-success mt-3" type="button" (click)="guardarVenta()">
+      Guardar Venta
+    </button>
+  </form>
+</div>

@@ -1,0 +1,36 @@
+<div class="modal-backdrop show"></div>
+
+<div
+  class="modal show d-block"
+  tabindex="-1"
+  style="background-color: rgba(0, 0, 0, 0.5)"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Detalle</h5>
+        <button type="button" class="btn-close" (click)="cerrar()"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover text-center">
+          <thead>
+            <tr>
+              <th>Fecha Registro</th>
+              <th>Movimiento</th>
+              <th>Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of movimientos; track $index) {
+            <tr>
+              <td>{{ item.fecha }}</td>
+              <td>{{ item.tipo }}</td>
+              <td>{{ item.cantidad }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
